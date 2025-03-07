@@ -1,0 +1,111 @@
+{
+  "framework": {
+    "modules": [
+      {
+        "name": "需求确定",
+        "core_inputs": ["用户需求", "业务目标", "系统约束"],
+        "core_outputs": ["需求文档", "用户故事", "用例图"],
+        "key_activities": ["需求分析", "优先级排序", "需求验证"],
+        "main_challenges": ["需求变更管理", "需求收集方法"]
+      },
+      {
+        "name": "建立高保真原型图",
+        "core_inputs": ["已确定的需求文档", "用户体验分析要点"],
+        "core_outputs": ["完整的高保真原型界面", "UI 设计规范说明"],
+        "key_activities": ["原型设计", "交互流程梳理", "视觉呈现与评审"],
+        "main_challenges": ["保持与需求一致的交互逻辑", "贴合真实设备的视觉与规范"]
+      },
+      {
+        "name": "后端开发（数据源确定）",
+        "core_inputs": ["业务逻辑", "数据需求"],
+        "core_outputs": ["服务架构", "API 设计文档"],
+        "key_activities": ["API 设计", "技术选型", "数据源选择"],
+        "main_challenges": ["数据吞吐量", "并发处理", "服务拆分"]
+      },
+      {
+        "name": "数据库建模开发",
+        "core_inputs": ["数据需求", "业务逻辑"],
+        "core_outputs": ["数据库模型", "表结构"],
+        "key_activities": ["数据库设计", "索引优化", "数据初始化"],
+        "main_challenges": ["数据库选择 (SQL/NoSQL)", "扩展性", "数据一致性"]
+      },
+      {
+        "name": "前端开发",
+        "core_inputs": ["UI/UX 设计稿", "API 文档"],
+        "core_outputs": ["前端代码", "用户界面"],
+        "key_activities": ["组件设计", "状态管理", "接口调用"],
+        "main_challenges": ["性能优化", "兼容性", "响应式布局"]
+      },
+      {
+        "name": "测试",
+        "core_inputs": ["需求文档", "开发完成的代码"],
+        "core_outputs": ["测试报告", "Bug 列表"],
+        "key_activities": ["单元测试", "集成测试", "回归测试"],
+        "main_challenges": ["测试覆盖率", "自动化测试", "压力测试"]
+      },
+      {
+        "name": "部署上线",
+        "core_inputs": ["测试通过的代码", "部署策略"],
+        "core_outputs": ["可访问的应用", "部署日志"],
+        "key_activities": ["环境配置", "版本管理", "监控"],
+        "main_challenges": ["部署稳定性", "回滚机制", "可扩展性"]
+      },
+      {
+        "name": "CI/CD（持续集成与持续部署）",
+        "core_inputs": ["代码仓库", "构建脚本"],
+        "core_outputs": ["自动化构建", "自动化部署"],
+        "key_activities": ["代码合并", "自动测试", "持续部署"],
+        "main_challenges": ["流水线优化", "自动化回归", "异常处理"]
+      }
+    ],
+    "technical_decision_tree": [
+      {
+        "scenario": "小型项目 & 低吞吐量",
+        "architecture": "单体架构或简单的分层架构",
+        "database": "单一关系型数据库（如 MySQL/PostgreSQL）",
+        "tech_stack": "以开发效率为主的语言和框架（如 Python+Django，PHP+Laravel）",
+        "notes": "适用于用户量有限、需求简单的项目，架构简单易于开发部署。"
+      },
+      {
+        "scenario": "大型项目 & 高性能/高吞吐量",
+        "architecture": "微服务架构，服务按领域拆分独立部署",
+        "database": "分布式数据库或 NoSQL（如 MongoDB、Cassandra），并引入缓存和消息队列",
+        "tech_stack": "考虑高性能的语言/框架（如 Java+Spring Boot，Go 微服务框架），必要时使用底层优化",
+        "notes": "适用于用户量大、并发高的系统，架构复杂但可扩展性强。"
+      },
+      {
+        "scenario": "中等规模或混合需求",
+        "architecture": "模块化单体架构或有限的微服务组合",
+        "database": "以关系型数据库为主，针对特定需求辅以其它存储（如缓存、全文检索）",
+        "tech_stack": "主流通用型技术栈（如 JavaScript+Node.js，Java+Spring）并对关键模块专项优化",
+        "notes": "适用于需求适中、团队规模有限的项目，在性能和开发效率之间取得平衡，可随着需求增长逐步演进。"
+      }
+    ],
+    "collaboration_modes": {
+      "AI_only": {
+        "description": "开发全程完全由 AI 工具自动完成，人类仅提供初始需求和最终验收。",
+        "suitable_for": "需求明确且范围较小的项目，或需要快速验证想法的原型。",
+        "pros": ["开发速度极快", "无需大量人工参与"],
+        "cons": ["AI 对复杂需求的理解可能不够准确", "代码质量和可维护性需要严格审核"]
+      },
+      "one_human_plus_AI": {
+        "description": "由一名开发者与 AI (如 Cursor) 协作完成项目。人负责总体设计和决策，AI 辅助编码和文档等具体工作。",
+        "suitable_for": "中小型项目，或单人开发希望提高效率的情况。",
+        "pros": ["人类掌控设计方向，AI 加速实现过程", "减少单个开发者的负担，提高产出"],
+        "cons": ["对开发者个人能力要求高，涉及所有环节", "需要反复校验 AI 输出，防止偏差"]
+      },
+      "multi_human_plus_AI": {
+        "description": "多名开发者组成团队，并利用 AI 工具辅助各环节工作（代码生成、审查、测试等）。",
+        "suitable_for": "大型或复杂项目，需要不同领域专家协作开发。",
+        "pros": ["结合多人专业知识与 AI 自动化优点，提高整体效率", "AI 可减轻团队在重复劳动上的负担"],
+        "cons": ["团队需协调AI建议与成员意见，制定统一规范", "引入 AI 可能增加沟通与管理开销"]
+      },
+      "other": {
+        "description": "其他形式的人机协作，如开源社区协作+AI辅助，或 AI 担任项目经理协调人类开发等。",
+        "suitable_for": "特殊项目情况或实验性团队配置。",
+        "pros": ["有可能激发新的协作模式优势"],
+        "cons": ["未经过广泛验证，需要根据具体情况调整"]
+      }
+    }
+  }
+}
